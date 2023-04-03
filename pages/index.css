@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .page {
   background-color: black;
   color: white;
@@ -6,3 +7,17 @@
   margin-left: 200px;
   margin-right: 200px;
 }
+=======
+@import url("../vendor/normalize.css");
+@import url("../blocks/page.css");
+@import url("../blocks/header.css");
+@import url("../blocks/recipes.css");
+@import url("../blocks/reservation.css");
+@import url("../blocks/form.css");
+@import url("../blocks/menu.css");
+@import url("../blocks/about.css");
+@import url("../blocks/footer.css");
+@import url("../blocks/card.css");
+@import url("../blocks/nav.css");
+@import url("../blocks/logo.css");
+>>>>>>> 6850d7172015f93230c8cd79a06514f9a664f8d7
