@@ -1,10 +1,11 @@
+@import url("../vendor/normalize.css");
+@import url("../vendor/fonts.css");
 @import url("../blocks/page.css");
 @import url("../blocks/header.css");
 @import url("../blocks/profile.css");
 @import url("../blocks/cards.css");
 @import url("../blocks/card.css");
 @import url("/blocks/footer.css");
-@import url("../vendor/fonts.css");
 
 @media screen and (max-width: 1100px) {
   .page__section {
@@ -53,7 +54,7 @@
     margin-top: 26px;
     gap: 10px 14px;
   }
-  .profile__image{
+  .profile__image {
     margin: 0;
   }
   .profile__description {
