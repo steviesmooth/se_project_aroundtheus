@@ -20,6 +20,7 @@
   grid-template-columns: repeat(auto-fit, 282px);
   grid-gap: 20px 17px;
   margin: 0;
+  margin-top: 48px;
   padding: 0;
 }
 .card__title {
@@ -62,3 +63,5 @@
   height: 18px;
   border-style: none;
 }
+
+
