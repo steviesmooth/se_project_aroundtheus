@@ -49,6 +49,7 @@
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  border-radius: 0px 0px 10px 10px;
 }
 .card__image {
   width: 282px;
@@ -59,4 +60,5 @@
   background: transparent url(../images/heart.svg) center no-repeat;
   width: 21px;
   height: 18px;
+  border-style: none;
 }

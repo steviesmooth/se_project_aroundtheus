@@ -19,6 +19,7 @@
   grid-gap: 9px 17px;
 }
 .profile__edit-button {
+  box-sizing: border-box;
   grid-row: 1;
   grid-column: 3;
   -ms-grid-row: 1;
@@ -28,12 +29,16 @@
   width: 24px;
   grid-area: button;
   align-self: center;
+  border: 1px solid #ffffff;
 }
 .profile__add-button {
+  box-sizing: border-box;
   background: transparent url(../images/plus.svg.svg) center no-repeat;
   width: 150px;
   height: 50px;
   margin-left: auto;
+  border: 2px solid #ffffff;
+  border-radius: 2px;
 }
 .profile__title {
   font-family: Inter;

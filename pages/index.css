@@ -21,12 +21,16 @@
   }
   .header {
     margin-top: 28px;
-  
   }
 }
 @media screen and (max-width: 480px) {
   .header {
     margin-top: 28px;
+  }
+  .header__line {
+    margin-top: 32px;
+    max-width: 480px;
+    height: 0px;
   }
 
   .profile {
