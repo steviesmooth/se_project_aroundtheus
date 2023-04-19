@@ -3,11 +3,10 @@
   font-size: 18px;
   font-weight: 400;
   line-height: 1.2;
-  letter-spacing: 0em;
   text-align: left;
-  color: rgba(84, 84, 84, 1);
+  color: #545454;
   margin-top: 67px;
   margin-bottom: 60px;
-  max-width: 318px;
-  max-height: 18px;
+  width: 318px;
+  height: 18px;
 }

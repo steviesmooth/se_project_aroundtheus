@@ -72,12 +72,15 @@
     margin-top: 30px;
   }
   .footer__title {
-    font-family: "Inter";
+    font-family: "Inter", Arial, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
+    width: 282px;
+    height: 14px;
     line-height: 17px;
     margin-left: 19px;
+    margin-top: 48px;
     margin-bottom: 36px;
     color: #545454;
   }
