@@ -33,6 +33,7 @@
 }
 .profile__edit-button:hover {
   cursor: pointer;
+  opacity: 0.6;
 }
 .profile__add-button {
   box-sizing: border-box;
@@ -45,6 +46,7 @@
 }
 .profile__add-button:hover {
   cursor: pointer;
+  opacity: 0.6;
 }
 .profile__title {
   font-family: "Inter", Arial, sans-serif;
