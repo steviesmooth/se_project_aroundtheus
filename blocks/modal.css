@@ -43,21 +43,7 @@
   padding-bottom: 13px;
   margin-bottom: 30px;
 }
-.modal__input::-webkit-input-placeholder {
-  color: #000;
-}
-.modal__input::-moz-placeholder {
-  color: #000;
-}
-.modal__input:-ms-input-placeholder {
-  color: #000;
-}
-.modal__input::-ms-input-placeholder {
-  color: #000;
-}
-.modal__input::placeholder {
-  color: #000;
-}
+
 .modal__button {
   width: 358px;
   height: 50.15px;
