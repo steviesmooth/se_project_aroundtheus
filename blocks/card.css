@@ -51,6 +51,10 @@
   height: 18px;
   border-style: none;
 }
+
+.card__like-button_active {
+  background-image: url(../images/activeheart.svg);
+}
 .card__like-button:hover {
   cursor: pointer;
   opacity: 0.5;
