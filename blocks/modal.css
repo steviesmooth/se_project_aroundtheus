@@ -7,12 +7,16 @@
   padding: 0 19px;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
+  -webkit-transition: visibility 0.5s 0.6s, opacity 0.6s linear;
+  -o-transition: visibility 0.5s 0.6s, opacity 0.6s linear;
   transition: visibility 0.5s 0.6s, opacity 0.6s linear;
   opacity: 0;
   height: 0;
   overflow: hidden;
 }
 .modal_opened {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   opacity: 1;
   height: auto;
@@ -34,14 +38,22 @@
   max-width: 75%;
   max-height: 75vh;
   margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
   align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
 }
 .modal__card-image-preview {
   border: none;
   max-width: 75vw;
   max-height: 75vh;
+  -o-object-fit: contain;
   object-fit: contain;
 }
 .modal__image-title {
@@ -144,6 +156,7 @@
     padding-right: 40px;
   }
   .modal__card-image-preview {
+    -o-object-fit: contain;
     object-fit: contain;
     width: 100%;
   }
