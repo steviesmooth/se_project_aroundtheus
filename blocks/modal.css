@@ -22,6 +22,41 @@
   -o-transition: visibility 0s 0.6s, opacity 0.6s;
   transition: visibility 0s 0.6s, opacity 0.6s;
 }
+/*new sprint 6*/
+.modal__label {
+  position: relative;
+}
+
+.modal__button_disabled {
+  box-sizing: border-box;
+  background: #fff;
+  opacity: 0.2;
+  border: 1px solid #000000;
+  border-radius: 2px;
+}
+.modal__error {
+  opacity: 1;
+  position: absolute;
+  top: 35px;
+  left: 0;
+  transition: opacity 0.3s;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+}
+.modal__error_visible {
+  opacity: 1;
+  transition: opacity 0.3s;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+}
 
 .modal_opened {
   visibility: visible;
@@ -95,10 +130,11 @@
   padding-bottom: 13px;
   margin-bottom: 30px;
 }
-.modal__label {
-  position: relative;
+.modal__input_type_error:valid {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
-.modal__input_type_error {
+.modal__input_type_error:invalid {
+  border-bottom: 1px solid #ff0000;
 }
 
 .modal__button {
@@ -121,11 +157,6 @@
 .modal__button:hover {
   cursor: pointer;
   opacity: 0.8;
-}
-.modal__button_disabled {
-  background: #ffffff;
-  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
 }
 
 .modal__heading {
@@ -158,28 +189,6 @@
 .modal__close:hover {
   cursor: pointer;
   opacity: 0.6;
-}
-.modal__error {
-  font-size: 12px;
-  line-height: 15px;
-  color: #ff0000;
-  position: absolute;
-  top: calc(100% + 5px);
-  left: 0;
-  transition: opacity 0.3s;
-}
-.modal__error_visible {
-  position: absolute;
-  width: 164px;
-  height: 12px;
-  left: 461px;
-  top: 338px;
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 15px;
-  color: #ff0000;
 }
 
 @media screen and (max-width: 480px) {
