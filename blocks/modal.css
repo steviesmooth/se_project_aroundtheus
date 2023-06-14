@@ -117,6 +117,11 @@
   cursor: pointer;
   opacity: 0.8;
 }
+.modal__button_disabled {
+  background: #ffffff;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
 
 .modal__heading {
   color: #000;
@@ -148,6 +153,28 @@
 .modal__close:hover {
   cursor: pointer;
   opacity: 0.6;
+}
+.modal__error {
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  transition: opacity 0.3s;
+}
+.modal__error_visible {
+  position: absolute;
+  width: 164px;
+  height: 12px;
+  left: 461px;
+  top: 338px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
 }
 
 @media screen and (max-width: 480px) {
