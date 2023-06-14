@@ -95,6 +95,11 @@
   padding-bottom: 13px;
   margin-bottom: 30px;
 }
+.modal__label {
+  position: relative;
+}
+.modal__input_type_error {
+}
 
 .modal__button {
   width: 100%;
