@@ -130,6 +130,30 @@ function handleAddCardSubmit(e) {
   closePopup(addCardModal);
   document.getElementById("modal-form").reset();
 }
+// ! ||--------------------------------------------------------------------------------||
+// ! ||                                  Close Overlay                                 ||
+// ! ||--------------------------------------------------------------------------------||
+
+function closeOverlay(e) {
+  if (e.target === profileEditCloseButton || e.target === profileEditModal) {
+    closePopup(profileEditModal);
+  }
+  if (e.target === addCardCloseButton || e.target === addCardModal) {
+    closePopup(addCardModal);
+  }
+}
+
+function escKeyClose(e) {
+  if (e.key === "Escape") {
+    closePopup(profileEditModal);
+  }
+  if (e.key === "Escape") {
+    closePopup(addCardModal);
+  }
+}
+
+document.addEventListener("keydown", escKeyClose);
+document.addEventListener("click", closeOverlay);
 
 /***************************************
  *                                      *
