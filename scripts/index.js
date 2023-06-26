@@ -133,27 +133,20 @@ function handleAddCardSubmit(e) {
 // ! ||--------------------------------------------------------------------------------||
 // ! ||                                  Close Overlay                                 ||
 // ! ||--------------------------------------------------------------------------------||
-
-function closeOverlay(e) {
-  if (e.target === profileEditCloseButton || e.target === profileEditModal) {
-    closePopup(profileEditModal);
-  }
-  if (e.target === addCardCloseButton || e.target === addCardModal) {
-    closePopup(addCardModal);
+function closeByEscape(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".modal_opened");
+    closePopup(openedPopup);
   }
 }
 
-function escKeyClose(e) {
-  if (e.key === "Escape") {
-    closePopup(profileEditModal);
-  }
-  if (e.key === "Escape") {
-    closePopup(addCardModal);
-  }
+function openModal(modal) {
+  document.addEventListener("keydown", closeByEscape);
 }
 
-document.addEventListener("keydown", escKeyClose);
-document.addEventListener("click", closeOverlay);
+function closeModal(modal) {
+  document.removeEventListener("keydown", closeByEscape);
+}
 
 /***************************************
  *                                      *
