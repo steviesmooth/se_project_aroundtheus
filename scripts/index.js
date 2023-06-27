@@ -69,12 +69,16 @@ closeImageBtn.addEventListener("click", () => {
 function closePopup(modal) {
   modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", closeByEscape);
-  document.removeEventListener("mousedown", closeByClick);
+  document.removeEventListener("mousedown", (evt) => {
+    closeByClick(evt, modal);
+  });
 }
 function openPopup(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", closeByEscape);
-  document.addEventListener("mousedown", closeByClick);
+  document.addEventListener("mousedown", (evt) => {
+    closeByClick(evt, modal);
+  });
 }
 
 function getCardElement(cardData) {
