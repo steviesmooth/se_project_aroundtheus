@@ -51,6 +51,10 @@ const addCardCloseButton = addCardModal.querySelector(".modal__close");
 const cardTitleInput = document.querySelector("#card-title");
 const cardUrlInput = document.querySelector("#card-url");
 
+const addCardSubmitBtn = addCardModal.querySelector(
+  config.submitButtonSelector
+);
+
 //image preview elements
 const imagePreviewModal = document.querySelector("#image-preview-modal");
 
@@ -129,7 +133,9 @@ function handleAddCardSubmit(e) {
   renderCard({ name, link }, cardsWrap);
   closePopup(addCardModal);
   addCardFormEl.reset();
+  toggleButtonState([cardTitleInput, cardUrlInput], addCardSubmitBtn, config);
 }
+
 // ! ||--------------------------------------------------------------------------------||
 // ! ||                                  Close Overlay                                ||
 // ! ||--------------------------------------------------------------------------------||
