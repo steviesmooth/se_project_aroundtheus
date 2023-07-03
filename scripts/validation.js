@@ -1,6 +1,7 @@
 // ! ||--------------------------------------------------------------------------------||
 // ! ||                                  Error Message                                 ||
 // ! ||--------------------------------------------------------------------------------||
+//import FormValidator from "../components/FormValidatior";
 
 function showError(formEl, inputEl, { inputErrorClass, errorClass }) {
   const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
@@ -27,8 +28,8 @@ function checkInputValidity(formEl, inputEl, content) {
   }
 }
 
-function hasInvalidInput(inputList) {
-  return !inputList.every((inputEl) => inputEl.validity.valid);
+function hasInvalidInput(inputEls) {
+  return !inputEls.every((inputEl) => inputEl.validity.valid);
 }
 
 // ! ||--------------------------------------------------------------------------------||
