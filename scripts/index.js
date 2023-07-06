@@ -74,8 +74,11 @@ const editFormValidator = new FormValidator(
   validationSettings,
   profileEditForm
 );
+editFormValidator.enableValidation();
 
 const addFormValidator = new FormValidator(validationSettings, addCardFormEl);
+
+addFormValidator.enableValidation();
 
 function closePopup(modal) {
   modal.classList.remove("modal_opened");

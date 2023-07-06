@@ -1,7 +1,6 @@
 // ! ||--------------------------------------------------------------------------------||
 // ! ||                                  Error Message                                 ||
 // ! ||--------------------------------------------------------------------------------||
-//import FormValidator from "../components/FormValidatior";
 
 function showError(formEl, inputEl, { inputErrorClass, errorClass }) {
   const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
