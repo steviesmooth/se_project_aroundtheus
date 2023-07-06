@@ -1,3 +1,5 @@
+import FormValidator from "../components/FormValidatior.js";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -43,6 +45,14 @@ const cardsWrap = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
+const validationSettings = {
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
 // Card modal elements
 const addNewCardButton = document.querySelector(".profile__add-button");
 const addCardModal = document.querySelector("#add-place-modal");
@@ -52,7 +62,7 @@ const cardTitleInput = document.querySelector("#card-title");
 const cardUrlInput = document.querySelector("#card-url");
 
 const addCardSubmitBtn = addCardModal.querySelector(
-  config.submitButtonSelector
+  validationSettings.submitButtonSelector
 );
 
 //image preview elements
@@ -60,11 +70,12 @@ const imagePreviewModal = document.querySelector("#image-preview-modal");
 
 const closeImageBtn = imagePreviewModal.querySelector(".modal__close");
 
-/***************************************
- *                                      *
- *               Functions              *
- *                                      *
- ***************************************/
+const editFormValidator = new FormValidator(
+  validationSettings,
+  profileEditForm
+);
+
+const addFormValidator = new FormValidator(validationSettings, addCardFormEl);
 
 function closePopup(modal) {
   modal.classList.remove("modal_opened");
