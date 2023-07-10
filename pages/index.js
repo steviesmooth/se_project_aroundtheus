@@ -94,37 +94,6 @@ function openPopup(modal) {
   modal.addEventListener("mousedown", closeByClick);
 }
 
-// function getCardElement(cardData) {
-//   const cardElement = cardTemplate.cloneNode(true);
-//   const cardImageEl = cardElement.querySelector(".card__image");
-//   const cardTitleEL = cardElement.querySelector(".card__title");
-//   const likeButton = cardElement.querySelector(".card__like-button");
-//   const deleteBtn = cardElement.querySelector(".card__delete-button");
-
-//   deleteBtn.addEventListener("click", () => {
-//     cardElement.remove(".card");
-//   });
-
-//   likeButton.addEventListener("click", () => {
-//     likeButton.classList.toggle("card__like-button_active");
-//   });
-
-//   cardImageEl.addEventListener("click", () => {
-//     openPopup(imagePreviewModal);
-//     const modalImageEl = document.querySelector(".modal__card-image-preview");
-//     const modalTitleEl = document.querySelector(".modal__image-title");
-//     modalImageEl.setAttribute("src", cardImageEl.src);
-//     modalImageEl.alt = cardData.name;
-//     modalTitleEl.textContent = cardData.name;
-//   });
-
-//   cardImageEl.src = cardData.link;
-//   cardImageEl.alt = cardData.name;
-//   cardTitleEL.textContent = cardData.name;
-
-//   return cardElement;
-// }
-
 function renderCard(cardData, wrapper) {
   const card = new Card(cardData, cardSelector).getView();
   wrapper.prepend(card);
