@@ -1,4 +1,5 @@
 import FormValidator from "../components/FormValidatior.js";
+// import Card from "../components/Card.js";
 
 const initialCards = [
   {
@@ -64,6 +65,8 @@ const cardUrlInput = document.querySelector("#card-url");
 const addCardSubmitBtn = addCardModal.querySelector(
   validationSettings.submitButtonSelector
 );
+
+const cardSelector = "#card-template";
 
 //image preview elements
 const imagePreviewModal = document.querySelector("#image-preview-modal");
@@ -160,7 +163,7 @@ function closeByEscape(evt) {
   }
 }
 
-function closeByClick(evt, modal) {
+function closeByClick(evt) {
   if (
     evt.target.classList.contains("modal__close") ||
     evt.target.classList.contains("modal_opened")
