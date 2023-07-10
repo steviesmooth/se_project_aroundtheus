@@ -1,5 +1,5 @@
 import FormValidator from "../components/FormValidatior.js";
-// import Card from "../components/Card.js";
+import Card from "../components/Card.js";
 
 const initialCards = [
   {
@@ -94,40 +94,40 @@ function openPopup(modal) {
   modal.addEventListener("mousedown", closeByClick);
 }
 
-function getCardElement(cardData) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImageEl = cardElement.querySelector(".card__image");
-  const cardTitleEL = cardElement.querySelector(".card__title");
-  const likeButton = cardElement.querySelector(".card__like-button");
-  const deleteBtn = cardElement.querySelector(".card__delete-button");
+// function getCardElement(cardData) {
+//   const cardElement = cardTemplate.cloneNode(true);
+//   const cardImageEl = cardElement.querySelector(".card__image");
+//   const cardTitleEL = cardElement.querySelector(".card__title");
+//   const likeButton = cardElement.querySelector(".card__like-button");
+//   const deleteBtn = cardElement.querySelector(".card__delete-button");
 
-  deleteBtn.addEventListener("click", () => {
-    cardElement.remove(".card");
-  });
+//   deleteBtn.addEventListener("click", () => {
+//     cardElement.remove(".card");
+//   });
 
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
+//   likeButton.addEventListener("click", () => {
+//     likeButton.classList.toggle("card__like-button_active");
+//   });
 
-  cardImageEl.addEventListener("click", () => {
-    openPopup(imagePreviewModal);
-    const modalImageEl = document.querySelector(".modal__card-image-preview");
-    const modalTitleEl = document.querySelector(".modal__image-title");
-    modalImageEl.setAttribute("src", cardImageEl.src);
-    modalImageEl.alt = cardData.name;
-    modalTitleEl.textContent = cardData.name;
-  });
+//   cardImageEl.addEventListener("click", () => {
+//     openPopup(imagePreviewModal);
+//     const modalImageEl = document.querySelector(".modal__card-image-preview");
+//     const modalTitleEl = document.querySelector(".modal__image-title");
+//     modalImageEl.setAttribute("src", cardImageEl.src);
+//     modalImageEl.alt = cardData.name;
+//     modalTitleEl.textContent = cardData.name;
+//   });
 
-  cardImageEl.src = cardData.link;
-  cardImageEl.alt = cardData.name;
-  cardTitleEL.textContent = cardData.name;
+//   cardImageEl.src = cardData.link;
+//   cardImageEl.alt = cardData.name;
+//   cardTitleEL.textContent = cardData.name;
 
-  return cardElement;
-}
+//   return cardElement;
+// }
 
 function renderCard(cardData, wrapper) {
-  const cardElement = getCardElement(cardData);
-  wrapper.prepend(cardElement);
+  const card = new Card(cardData, cardSelector).getView();
+  wrapper.prepend(card);
 }
 
 /***************************************
@@ -163,7 +163,7 @@ function closeByEscape(evt) {
   }
 }
 
-function closeByClick(evt) {
+function closeByClick(evt, modal) {
   if (
     evt.target.classList.contains("modal__close") ||
     evt.target.classList.contains("modal_opened")

@@ -1,5 +1,6 @@
 const imagePreviewModal = document.querySelector("#image-preview-modal");
-const cardImageEl = cardElement.querySelector(".card__image");
+const modalImageEl = document.querySelector(".modal__card-image-preview");
+const modalTitleEl = document.querySelector(".modal__image-title");
 
 function openPopup(modal) {
   modal.classList.add("modal_opened");
@@ -37,41 +38,6 @@ export default class Card {
     this._cardSelector = cardSelector;
   }
 
-  _setEventListeners() {
-    this._element
-      .querySelector(".card__like-button")
-      .addEventListener("click", this._handleLikeButton.bind(this));
-
-    this._element
-      .querySelector(".card__delete-button")
-      .addEventListener("click", this._handleDeleteButton);
-
-    this._element
-      .querySelector(".card__image")
-      .addEventListener("click", this._handlePreviewImage);
-  }
-
-  _handleLikeButton() {
-    this._element
-      .querySelector(".card__like-button")
-      .classList.toggle("card__like-button_active");
-  }
-
-  _handleDeleteButton() {
-    this._element
-      .querySelector(".card__delete-button")
-      .classList.remove(".card");
-  }
-
-  _handlePreviewImage() {
-    openPopup(imagePreviewModal);
-    const modalImageEl = document.querySelector(".modal__card-image-preview");
-    const modalTitleEl = document.querySelector(".modal__image-title");
-    modalImageEl.setAttribute("src", cardImageEl.src);
-    modalImageEl.alt = cardData.name;
-    modalTitleEl.textContent = cardData.name;
-  }
-
   _getTemplate() {
     const cardElement = document
       .querySelector(this._cardSelector)
@@ -81,8 +47,45 @@ export default class Card {
     return cardElement;
   }
 
+  _setEventListeners() {
+    this._element
+      .querySelector(".card__like-button")
+      .addEventListener("click", this._handleLikeButton.bind(this));
+
+    this._element
+      .querySelector(".card__delete-button")
+      .addEventListener("click", () => this._handleDeleteButton());
+
+    this._element
+      .querySelector(".card__image")
+      .addEventListener("click", () => this._handlePreviewImage());
+  }
+
+  _handleLikeButton() {
+    this._element
+      .querySelector(".card__like-button")
+      .classList.toggle("card__like-button_active");
+  }
+
+  _handleDeleteButton() {
+    this._element.remove();
+  }
+
+  _handlePreviewImage() {
+    openPopup(imagePreviewModal);
+    modalImageEl.setAttribute("src", cardImageEl.src);
+    modalImageEl.alt = this._name;
+    modalTitleEl.textContent = this._name;
+  }
+
   getView() {
     this._element = this._getTemplate();
     this._setEventListeners();
+
+    this._element.querySelector(".card__image").src = this._link;
+    this._element.querySelector(".card__image").alt = this._name;
+    this._element.querySelector(".card__title").textContent = this._name;
+
+    return this._element;
   }
 }
