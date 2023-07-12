@@ -1,32 +1,7 @@
 import FormValidator from "../components/FormValidatior.js";
 import Card from "../components/Card.js";
-
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  },
-];
+import { closePopup, openPopup } from "../utils/utils.js";
+import { initialCards, validationSettings } from "../utils/constants.js";
 
 /***************************************
  *                                      *
@@ -45,14 +20,6 @@ const profileEditForm = profileEditModal.querySelector(".modal__form");
 const cardsWrap = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
-
-const validationSettings = {
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
 
 // Card modal elements
 const addNewCardButton = document.querySelector(".profile__add-button");
@@ -83,17 +50,6 @@ const addFormValidator = new FormValidator(validationSettings, addCardFormEl);
 
 addFormValidator.enableValidation();
 
-function closePopup(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", closeByEscape);
-  modal.removeEventListener("mousedown", closeByClick);
-}
-function openPopup(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener("keydown", closeByEscape);
-  modal.addEventListener("mousedown", closeByClick);
-}
-
 function renderCard(cardData, wrapper) {
   const card = new Card(cardData, cardSelector).getView();
   wrapper.prepend(card);
@@ -119,26 +75,7 @@ function handleAddCardSubmit(e) {
   renderCard({ name, link }, cardsWrap);
   closePopup(addCardModal);
   addCardFormEl.reset();
-  toggleButtonState([cardTitleInput, cardUrlInput], addCardSubmitBtn, config);
-}
-
-// ! ||--------------------------------------------------------------------------------||
-// ! ||                                  Close Overlay                                ||
-// ! ||--------------------------------------------------------------------------------||
-function closeByEscape(evt) {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".modal_opened");
-    closePopup(openedPopup);
-  }
-}
-
-function closeByClick(evt, modal) {
-  if (
-    evt.target.classList.contains("modal__close") ||
-    evt.target.classList.contains("modal_opened")
-  ) {
-    closePopup(evt.currentTarget);
-  }
+  addFormValidator.toggleButtonState();
 }
 
 /***************************************

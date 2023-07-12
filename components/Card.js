@@ -1,34 +1,8 @@
+import { openPopup } from "../utils/utils.js";
+
 const imagePreviewModal = document.querySelector("#image-preview-modal");
 const modalImageEl = document.querySelector(".modal__card-image-preview");
 const modalTitleEl = document.querySelector(".modal__image-title");
-
-function openPopup(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener("keydown", closeByEscape);
-  modal.addEventListener("mousedown", closeByClick);
-}
-
-function closePopup(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", closeByEscape);
-  modal.removeEventListener("mousedown", closeByClick);
-}
-
-function closeByEscape(evt) {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".modal_opened");
-    closePopup(openedPopup);
-  }
-}
-
-function closeByClick(evt) {
-  if (
-    evt.target.classList.contains("modal__close") ||
-    evt.target.classList.contains("modal_opened")
-  ) {
-    closePopup(evt.currentTarget);
-  }
-}
 
 export default class Card {
   constructor(cardData, cardSelector) {
@@ -69,6 +43,7 @@ export default class Card {
 
   _handleDeleteButton() {
     this._element.remove();
+    this._element = null;
   }
 
   _handlePreviewImage() {
@@ -82,8 +57,9 @@ export default class Card {
     this._element = this._getTemplate();
     this._setEventListeners();
 
-    this._element.querySelector(".card__image").src = this._link;
-    this._element.querySelector(".card__image").alt = this._name;
+    const imageElement = this._element.querySelector(".card__image");
+    imageElement.src = this._link;
+    imageElement.alt = this._name;
     this._element.querySelector(".card__title").textContent = this._name;
 
     return this._element;
