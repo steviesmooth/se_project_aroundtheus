@@ -3,6 +3,7 @@ import { openPopup } from "../utils/utils.js";
 const imagePreviewModal = document.querySelector("#image-preview-modal");
 const modalImageEl = document.querySelector(".modal__card-image-preview");
 const modalTitleEl = document.querySelector(".modal__image-title");
+const cardImageEl = document.querySelector(".modal__card-image-preview");
 
 export default class Card {
   constructor(cardData, cardSelector) {
