@@ -49,7 +49,7 @@ export default class Card {
 
   _handlePreviewImage() {
     openPopup(imagePreviewModal);
-    modalImageEl.setAttribute("src", cardImageEl.src);
+    modalImageEl.src = this._link;
     modalImageEl.alt = this._name;
     modalTitleEl.textContent = this._name;
   }
