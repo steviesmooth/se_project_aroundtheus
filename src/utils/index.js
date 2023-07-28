@@ -2,7 +2,7 @@ import FormValidator from "../components/FormValidatior.js";
 import Card from "../components/Card.js";
 import { closePopup, openPopup } from "../utils/utils.js";
 import { initialCards, validationSettings } from "../utils/constants.js";
-
+import "../pages/index.css";
 /***************************************
  *                                      *
  *               Elements               *
