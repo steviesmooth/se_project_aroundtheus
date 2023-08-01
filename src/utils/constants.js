@@ -39,9 +39,12 @@ export const cardSettings = {
   cardPreviewImage: "#image-preview-modal",
   cardImage: ".modal__card-image-preview",
   addCardModal: "#add-place-modal",
+  cardForm: "#modal-form",
 };
 
-export const profileSettings = {
-  profileEditModal: "#profile-edit-modal",
-  profileEditBtn: "#profile-edit-button",
+export const userInfoSettings = {
+  profileTitle: ".profile__title",
+  profileDescription: ".profile__description",
+  cardTitle: ".modal__input_type_title",
+  cardUrl: ".modal__input_type_url",
 };

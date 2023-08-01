@@ -10,19 +10,30 @@ import {
   formSettings,
   initialCards,
   profileSettings,
+  userInfoSettings,
 } from "../utils/constants.js";
 
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import "../pages/index.css";
+
+import UserInfo from "../components/UserInfo.js";
 const addCardBtn = document.querySelector(".profile__add-button");
 const { cardPreviewImage, addCardModal } = cardSettings;
 
 const CardImagePreview = new PopupWithImage(cardPreviewImage);
+
+const { profileTitle, profileDescription } = userInfoSettings;
+const cardForm = document.querySelector("#modal-form");
 // ! ||--------------------------------------------------------------------------------||
 // ! ||                                    Classes                                    ||
 // ! ||--------------------------------------------------------------------------------||
+
+const userInfo = new UserInfo({
+  nameSelector: profileTitle,
+  jobSelector: profileDescription,
+});
 
 const CardLayout = new Section(
   {
@@ -43,15 +54,39 @@ const CardLayout = new Section(
   cardSettings.cardList
 );
 CardLayout.renderItems();
-CardImagePreview.setEventListeners();
 
-const AddCardEditor = new PopupWithForm({
+const userInfoPopup = new PopupWithForm({
   popupSelector: addCardModal,
-  handleFormSubmit: () => {},
+  handleFormSubmit: (data) => {
+    userInfo.setUserInfo(data);
+  },
 });
 
-AddCardEditor.setEventListeners();
+const NewCard = new PopupWithForm({
+  popupSelector: addCardModal,
+  handleFormSubmit: (data) => {
+    const card = new Card(
+      {
+        data,
+        handleImageClick: () => {
+          CardImagePreview.open(data);
+        },
+      },
+      cardSettings.cardTemplate
+    );
+  },
+});
+
+// const editFormValidator = new FormValidator(formSettings, profileEditForm);
+
+const addFormValidator = new FormValidator(formSettings, cardForm);
+
+CardImagePreview.setEventListeners();
+userInfoPopup.setEventListeners();
+NewCard.setEventListeners();
+
+addFormValidator.enableValidation();
 
 addCardBtn.addEventListener("click", () => {
-  AddCardEditor.open();
+  NewCard.open();
 });
