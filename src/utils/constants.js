@@ -25,10 +25,24 @@ export const initialCards = [
   },
 ];
 
-export const validationSettings = {
+export const formSettings = {
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
   inactiveButtonClass: "modal__button_disabled",
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
+};
+
+export const cardSettings = {
+  cardList: ".cards__list",
+  cardTemplate: "#card-template",
+  cardPreviewImage: "#image-preview-modal",
+  cardImage: ".modal__card-image-preview",
+  addCardModal: "#add-place-modal",
+  addCardBtn: ".profile__add-button",
+};
+
+export const profileSettings = {
+  profileEditModal: "#profile-edit-modal",
+  profileEditBtn: "#profile-edit-button",
 };

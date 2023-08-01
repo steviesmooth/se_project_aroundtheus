@@ -1,7 +1,11 @@
 import FormValidator from "../components/FormValidatior.js";
 import Card from "../components/Card.js";
 import { closePopup, openPopup } from "../utils/utils.js";
-import { initialCards, validationSettings } from "../utils/constants.js";
+import { formSettings, initialCards } from "../utils/constants.js";
+import Popup from "../components/Popup.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import Section from "../components/Section.js";
 import "../pages/index.css";
 /***************************************
  *                                      *
@@ -30,7 +34,7 @@ const cardTitleInput = document.querySelector("#card-title");
 const cardUrlInput = document.querySelector("#card-url");
 
 const addCardSubmitBtn = addCardModal.querySelector(
-  validationSettings.submitButtonSelector
+  formSettings.submitButtonSelector
 );
 
 const cardSelector = "#card-template";
@@ -40,13 +44,10 @@ const imagePreviewModal = document.querySelector("#image-preview-modal");
 
 const closeImageBtn = imagePreviewModal.querySelector(".modal__close");
 
-const editFormValidator = new FormValidator(
-  validationSettings,
-  profileEditForm
-);
+const editFormValidator = new FormValidator(formSettings, profileEditForm);
 editFormValidator.enableValidation();
 
-const addFormValidator = new FormValidator(validationSettings, addCardFormEl);
+const addFormValidator = new FormValidator(formSettings, addCardFormEl);
 
 addFormValidator.enableValidation();
 
@@ -96,4 +97,4 @@ addCardFormEl.addEventListener("submit", handleAddCardSubmit);
 // New card
 addNewCardButton.addEventListener("click", () => openPopup(addCardModal));
 
-initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
+// initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));

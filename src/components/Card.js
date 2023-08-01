@@ -6,11 +6,12 @@ const modalTitleEl = document.querySelector(".modal__image-title");
 const cardImageEl = document.querySelector(".modal__card-image-preview");
 
 export default class Card {
-  constructor(cardData, cardSelector) {
-    this._name = cardData.name;
-    this._link = cardData.link;
+  constructor({ data, handleImageClick }, cardSelector) {
+    this._name = data.name;
+    this._link = data.link;
 
     this._cardSelector = cardSelector;
+    this._handleImageClick = handleImageClick;
   }
 
   _getTemplate() {
@@ -33,7 +34,9 @@ export default class Card {
 
     this._element
       .querySelector(".card__image")
-      .addEventListener("click", () => this._handlePreviewImage());
+      .addEventListener("click", () =>
+        this._handleImageClick({ link: this._link, name: this._name })
+      );
   }
 
   _handleLikeButton() {
@@ -47,12 +50,12 @@ export default class Card {
     this._element = null;
   }
 
-  _handlePreviewImage() {
-    openPopup(imagePreviewModal);
-    modalImageEl.src = this._link;
-    modalImageEl.alt = this._name;
-    modalTitleEl.textContent = this._name;
-  }
+  // _handlePreviewImage() {
+  //   openPopup(imagePreviewModal);
+  //   modalImageEl.src = this._link;
+  //   modalImageEl.alt = this._name;
+  //   modalTitleEl.textContent = this._name;
+  // }
 
   getView() {
     this._element = this._getTemplate();
