@@ -18,9 +18,9 @@ import Section from "../components/Section.js";
 import "../pages/index.css";
 
 const { addCardBtn } = cardSettings;
+const { cardPreviewImage, cardImage } = cardSettings;
 
-const CardImagePreview = new PopupWithImage(cardSettings.cardImage);
-
+const CardImagePreview = new PopupWithImage(cardPreviewImage);
 // ! ||--------------------------------------------------------------------------------||
 // ! ||                                    Classes                                    ||
 // ! ||--------------------------------------------------------------------------------||
