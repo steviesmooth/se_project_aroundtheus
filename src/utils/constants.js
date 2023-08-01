@@ -39,7 +39,6 @@ export const cardSettings = {
   cardPreviewImage: "#image-preview-modal",
   cardImage: ".modal__card-image-preview",
   addCardModal: "#add-place-modal",
-  addCardBtn: ".profile__add-button",
 };
 
 export const profileSettings = {

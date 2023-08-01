@@ -16,9 +16,8 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import "../pages/index.css";
-
-const { addCardBtn } = cardSettings;
-const { cardPreviewImage, cardImage } = cardSettings;
+const addCardBtn = document.querySelector(".profile__add-button");
+const { cardPreviewImage, addCardModal } = cardSettings;
 
 const CardImagePreview = new PopupWithImage(cardPreviewImage);
 // ! ||--------------------------------------------------------------------------------||
@@ -46,32 +45,16 @@ const CardLayout = new Section(
 CardLayout.renderItems();
 CardImagePreview.setEventListeners();
 
-// const profileEditForm = new PopupWithForm("#profile-edit-modal");
+const AddCardEditor = new PopupWithForm({
+  popupSelector: addCardModal,
+  handleFormSubmit: () => {},
+});
 
-// const addCardForm = new PopupWithForm(
-//   "add-place-modal",
-//   addFormValidator.enableValidation()
-// );
+AddCardEditor.setEventListeners();
 
-// const editFormValidator = new FormValidator(formSettings, profileEditForm);
-// editFormValidator.enableValidation();
-// const addFormValidator = new FormValidator(formSettings, addCardForm);
-// addFormValidator.enableValidation();
+addCardBtn.addEventListener("click", () => {
+  AddCardEditor.open();
+});
 
-// addCardForm.setEventListeners();
-
-// profileEditForm.setEventListeners();
-
-// addCardBtn.addEventListener("click", open());
-// profileEditBtn.addEventListener("click", () => {
-//   profileEditForm.open();
-// });
-
-// profileEditButton.addEventListener("click", () => {
-//   profileTitleInput.value = profileTitle.textContent;
-//   profileDescriptionInput.value = profileDescription.textContent;
-//   openPopup(profileEditModal);
-// });
-
-// // New card
-// addNewCardButton.addEventListener("click", () => openPopup(addCardModal));
+const addFormValidator = new FormValidator(formSettings, AddCardEditor);
+addFormValidator.enableValidation();
