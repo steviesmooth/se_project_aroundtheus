@@ -55,6 +55,3 @@ AddCardEditor.setEventListeners();
 addCardBtn.addEventListener("click", () => {
   AddCardEditor.open();
 });
-
-const addFormValidator = new FormValidator(formSettings, AddCardEditor);
-addFormValidator.enableValidation();
