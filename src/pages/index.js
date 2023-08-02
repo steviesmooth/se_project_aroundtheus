@@ -28,6 +28,8 @@ const CardImagePreview = new PopupWithImage(cardPreviewImage);
 const { profileTitle, profileDescription, profileEditModal } = userInfoSettings;
 const cardForm = document.querySelector("#modal-form");
 const profileForm = document.querySelector("#profile-edit-form");
+const cardTitleInput = document.querySelector("#card-title");
+const cardUrlInput = document.querySelector("#card-url");
 // ! ||--------------------------------------------------------------------------------||
 // ! ||                                    Classes                                    ||
 // ! ||--------------------------------------------------------------------------------||
@@ -76,6 +78,7 @@ const NewCard = new PopupWithForm({
       },
       cardSettings.cardTemplate
     );
+    card.getView();
   },
 });
 
@@ -90,18 +93,18 @@ NewCard.setEventListeners();
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 
-function handleProfileEditSubmit() {
-  userInfo.setUserInfo(userInfoPopup);
+function handleProfileEditSubmit(userData) {
+  userInfo.setUserInfo(userData);
   userInfoPopup.close();
 }
 
-function handleAddCardSubmit(e) {
-  e.preventDefault();
-  const name = cardTitleInput.value;
-  const link = cardUrlInput.value;
-  renderCard({ name, link }, cardsWrap);
-  closePopup(addCardModal);
-  addCardFormEl.reset();
+function handleAddCardSubmit(data) {
+  data.name = cardTitleInput.value;
+  data.link = cardUrlInput.value;
+
+  CardLayout.addItem(NewCard);
+  debugger;
+  NewCard.close();
   addFormValidator.toggleButtonState();
 }
 
@@ -114,3 +117,4 @@ profileEditBtn.addEventListener("click", () => {
 });
 
 profileForm.addEventListener("submit", handleProfileEditSubmit);
+cardForm.addEventListener("submit", handleAddCardSubmit);

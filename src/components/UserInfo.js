@@ -6,8 +6,8 @@ export default class UserInfo {
 
   getUserInfo() {
     const userData = {
-      userName: this._nameSelector,
-      userJob: this._jobSelector,
+      userName: (this._nameSelector.value = this._nameSelector.textContent),
+      userJob: (this._jobSelector.value = this._jobSelector.textContent),
     };
 
     return userData;
@@ -16,6 +16,8 @@ export default class UserInfo {
   setUserInfo(userData) {
     this._nameSelector.textContent = userData.value;
     this._jobSelector.textContent = userData.value;
+
+    return userData;
   }
 }
 
