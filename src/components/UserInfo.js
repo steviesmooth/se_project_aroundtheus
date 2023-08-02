@@ -5,18 +5,19 @@ export default class UserInfo {
   }
 
   getUserInfo() {
-    const userData = {};
-    userData[this._nameSelector.textContent] = this._nameSelector.value;
-    userData[this._jobSelector.textContent] = this._jobSelector.value;
+    const userData = {
+      userName: this._nameSelector,
+      userJob: this._jobSelector,
+    };
 
     return userData;
   }
 
-  setUserInfo() {
-    const userData = {};
-    userData[this._nameSelector.value] = this._nameSelector.textContent;
-    userData[this._jobSelector.value] = this._jobSelector.textContent;
-
-    return userData;
+  setUserInfo(userData) {
+    this._nameSelector.textContent = userData.value;
+    this._jobSelector.textContent = userData.value;
   }
 }
+
+// profileTitle.textContent = profileTitleInput.value;
+// profileDescription.textContent = profileDescriptionInput.value;

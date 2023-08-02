@@ -47,4 +47,5 @@ export const userInfoSettings = {
   profileDescription: ".profile__description",
   cardTitle: ".modal__input_type_title",
   cardUrl: ".modal__input_type_url",
+  profileEditModal: "#profile-edit-modal",
 };
