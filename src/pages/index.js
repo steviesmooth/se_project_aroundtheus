@@ -24,7 +24,7 @@ const profileEditBtn = document.querySelector(".profile__edit-button");
 const { cardPreviewImage, addCardModal } = cardSettings;
 
 const CardImagePreview = new PopupWithImage(cardPreviewImage);
-
+const { name, link } = initialCards;
 const { profileTitle, profileDescription, profileEditModal } = userInfoSettings;
 const cardForm = document.querySelector("#modal-form");
 const profileForm = document.querySelector("#profile-edit-form");
@@ -103,7 +103,6 @@ function handleAddCardSubmit(data) {
   data.link = cardUrlInput.value;
 
   CardLayout.addItem(NewCard);
-  debugger;
   NewCard.close();
   addFormValidator.toggleButtonState();
 }
