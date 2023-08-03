@@ -63,6 +63,7 @@ const userInfoPopup = new PopupWithForm({
   popupSelector: profileEditModal,
   handleFormSubmit: (userData) => {
     userInfo.setUserInfo(userData);
+
     userInfoPopup.close();
   },
 });

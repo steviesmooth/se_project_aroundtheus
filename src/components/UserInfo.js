@@ -13,10 +13,9 @@ export default class UserInfo {
     return userData;
   }
 
-  setUserInfo() {
-    debugger;
-    this._nameSelector.textContent = this._nameSelector.value;
-    this._jobSelector.textContent = this._jobSelector.value;
+  setUserInfo(userData) {
+    this._nameSelector.textContent = userData.title;
+    this._jobSelector.textContent = userData.description;
   }
 }
 
