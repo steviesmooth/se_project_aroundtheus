@@ -6,8 +6,8 @@ export default class UserInfo {
 
   getUserInfo() {
     return {
-      userName: this._nameEl,
-      userJob: this._jobEl,
+      userName: this._nameEl.textContent,
+      userJob: this._jobEl.textContent,
     };
   }
 
