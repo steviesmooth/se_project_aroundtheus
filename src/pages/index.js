@@ -62,7 +62,8 @@ CardLayout.renderItems();
 const userInfoPopup = new PopupWithForm({
   popupSelector: profileEditModal,
   handleFormSubmit: (userData) => {
-    userInfo.getUserInfo(userData);
+    userInfo.setUserInfo(userData);
+    userInfoPopup.close();
   },
 });
 
@@ -93,19 +94,19 @@ NewCard.setEventListeners();
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 
-function handleProfileEditSubmit(userData) {
-  userInfo.setUserInfo(userData);
-  userInfoPopup.close();
-}
+// function handleProfileEditSubmit(userData) {
+//   userInfo.setUserInfo(userData);
+//   userInfoPopup.close();
+// }
 
-function handleAddCardSubmit(data) {
-  data.name = cardTitleInput.value;
-  data.link = cardUrlInput.value;
+// function handleAddCardSubmit(data) {
+//   data.name = cardTitleInput.value;
+//   data.link = cardUrlInput.value;
 
-  CardLayout.addItem(NewCard);
-  NewCard.close();
-  addFormValidator.toggleButtonState();
-}
+//   CardLayout.addItem(NewCard);
+//   NewCard.close();
+//   addFormValidator.toggleButtonState();
+// }
 
 addCardBtn.addEventListener("click", () => {
   NewCard.open();
@@ -115,5 +116,5 @@ profileEditBtn.addEventListener("click", () => {
   userInfoPopup.open();
 });
 
-profileForm.addEventListener("submit", handleProfileEditSubmit);
-cardForm.addEventListener("submit", handleAddCardSubmit);
+// profileForm.addEventListener("submit", handleProfileEditSubmit);
+// cardForm.addEventListener("submit", handleAddCardSubmit);

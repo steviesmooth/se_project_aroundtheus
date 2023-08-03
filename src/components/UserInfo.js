@@ -13,11 +13,10 @@ export default class UserInfo {
     return userData;
   }
 
-  setUserInfo(userData) {
-    this._nameSelector.textContent = userData.value;
-    this._jobSelector.textContent = userData.value;
-
-    return userData;
+  setUserInfo() {
+    debugger;
+    this._nameSelector.textContent = this._nameSelector.value;
+    this._jobSelector.textContent = this._jobSelector.value;
   }
 }
 
