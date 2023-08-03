@@ -7,8 +7,8 @@ const cardImageEl = document.querySelector(".modal__card-image-preview");
 
 export default class Card {
   constructor({ data, handleImageClick }, cardSelector) {
-    this._name = data.name;
-    this._link = data.link;
+    this._title = data.title;
+    this._url = data.url;
 
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
@@ -62,9 +62,9 @@ export default class Card {
     this._setEventListeners();
 
     const imageElement = this._element.querySelector(".card__image");
-    imageElement.src = this._link;
-    imageElement.alt = this._name;
-    this._element.querySelector(".card__title").textContent = this._name;
+    imageElement.src = this._url;
+    imageElement.alt = this._title;
+    this._element.querySelector(".card__title").textContent = this._title;
 
     return this._element;
   }
