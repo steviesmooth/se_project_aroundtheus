@@ -1,10 +1,11 @@
 export default class Card {
-  constructor({ data, handleImageClick }, cardSelector) {
+  constructor({ data, handleImageClick, handleDelete }, cardSelector) {
     this._title = data.title;
     this._url = data.url;
 
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
+    this._handleDelete = handleDelete;
   }
 
   _getTemplate() {
@@ -42,13 +43,6 @@ export default class Card {
     this._element.remove();
     this._element = null;
   }
-
-  // _handlePreviewImage() {
-  //   openPopup(imagePreviewModal);
-  //   modalImageEl.src = this._link;
-  //   modalImageEl.alt = this._name;
-  //   modalTitleEl.textContent = this._name;
-  // }
 
   getView() {
     this._element = this._getTemplate();

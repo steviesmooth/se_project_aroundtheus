@@ -115,6 +115,16 @@
   color: #ffffff;
   margin-top: 10px;
 }
+
+.modal__delete-container {
+  max-width: 430px;
+  max-height: 181px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 1);
+  margin: auto;
+  position: relative;
+}
+
 .modal__form {
   display: -webkit-box;
   display: -ms-flexbox;

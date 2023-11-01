@@ -40,6 +40,7 @@ export const cardSettings = {
   cardImage: ".modal__card-image-preview",
   addCardModal: "#add-place-modal",
   cardForm: "#modal-form",
+  cardDeletePopup: "#confirmation-delete-modal",
 };
 
 export const userInfoSettings = {
