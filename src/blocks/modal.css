@@ -26,6 +26,13 @@
 .modal__label {
   position: relative;
 }
+.modal__title {
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 900;
+  line-height: 29px;
+  padding: 36px 36px 0px 36px;
+  margin: 0;
+}
 
 .modal__button_disabled {
   -webkit-box-sizing: border-box;

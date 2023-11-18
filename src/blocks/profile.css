@@ -8,6 +8,27 @@
   align-items: center;
   padding-top: 40px;
 }
+
+.profile__image-edit {
+  position: absolute;
+  height: 120px;
+  width: 120px;
+  background-image: url("../images/pencil.svg.svg");
+  background-size: 20%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: none;
+  border-radius: 50%;
+  opacity: 0;
+  transition: ease-in-out 0.3s;
+}
+
+.profile__image-edit:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
 .profile__info {
   display: -ms-grid;
   display: grid;

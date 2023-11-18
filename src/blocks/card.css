@@ -57,6 +57,12 @@
   -webkit-transition: opacity 0.5s ease-in-out;
   -o-transition: opacity 0.5s ease-in-out;
   transition: opacity 0.5s ease-in-out;
+  padding: 15px;
+}
+
+.card__like-count {
+  text-align: center;
+  margin: 0;
 }
 
 .card__like-button_active {

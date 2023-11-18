@@ -1,131 +1,80 @@
 export default class Api {
   constructor(options) {
-    this._baseUrl = options.baseUrl;
+    this._url = options.url;
     this._headers = options.headers;
   }
 
-  getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, {
+  _getRes(res) {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  }
+
+  getProfileApi() {
+    return fetch(this._url + "/users/me", {
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        Promise.resolve("resolved");
-        return res.json();
-      }
-      // if the server returns an error, reject the promise
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._getRes);
+  }
+  getInitialCards() {
+    return fetch(this._url + "/cards", {
+      headers: this._headers,
+    }).then(this._getRes);
+  }
+
+  editProfileApi(data) {
+    return fetch(this._url + "/users/me", {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.title,
+        about: data.description,
+      }),
+    }).then(this._getRes);
   }
 
   createCardApi(data) {
-    return fetch(`${this._baseUrl}/cards`, {
-      headers: this._headers,
+    return fetch(this._url + "/cards", {
       method: "POST",
+      headers: this._headers,
       body: JSON.stringify({
         name: data.title,
         link: data.url,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        Promise.resolve("resolved");
-        return res.json();
-      }
-      // if the server returns an error, reject the promise
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._getRes);
   }
 
   deleteCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
-      headers: {
-        method: "DELETE",
-        authorization: this._token,
-      },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(res.status);
-    });
-  }
-
-  likeCard(cardId, likes) {
-    return fetch(`${this._baseUrl}/cards/${cardId}/${likes}`, {
-      headers: {
-        method: "PUT",
-        authorization: this._token,
-      },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(res.status);
-    });
-  }
-
-  disLikeCard(cardId, likes) {
-    return fetch(`${this._baseUrl}/cards/${cardId}/${likes}`, {
-      headers: {
-        method: "DELETE",
-        authorization: this._token,
-      },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(res.status);
-    });
-  }
-
-  getProfileApi() {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return fetch(this._url + `/cards/${cardId}`, {
+      method: "DELETE",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        Promise.resolve("resolved");
-        return res.json();
-      }
-      // if the server returns an error, reject the promise
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._getRes);
   }
 
-  editProfileApi(userData) {
-    return fetch("https://around-api.en.tripleten-services.com/v1/users/me", {
+  updateAvatar(data) {
+    return fetch(this._url + "/users/me/avatar", {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name: userData.title,
-        about: userData.description,
+        avatar: data.url,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        Promise.resolve("resolved");
-        return res.json();
-      }
-      // if the server returns an error, reject the promise
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._getRes);
   }
 
-  updateAvatar() {
-    return fetch(
-      "https://around-api.en.tripleten-services.com/v1/users/me/avatar",
-      {
-        method: "PATCH",
-        headers: this._headers,
-        body: JSON.stringify({
-          name: userData.title,
-          about: userData.description,
-        }),
-      }
-    ).then((res) => {
-      if (res.ok) {
-        Promise.resolve("resolved");
-        return res.json();
-      }
-      // if the server returns an error, reject the promise
-      return Promise.reject(`Error: ${res.status}`);
-    });
+  getLikes(cardId) {
+    return fetch(`${this._url}/cards/likes/${cardId}`, {
+      headers: this._headers,
+    }).then(this._getRes);
+  }
+
+  likeCard(cardId) {
+    return fetch(this._url + `/cards/${cardId}/likes`, {
+      headers: this._headers,
+      method: "PUT",
+    }).then(this._getRes);
+  }
+
+  disLikeCard(cardId) {
+    return fetch(this._url + `/cards/${cardId}/likes`, {
+      headers: this._headers,
+      method: "DELETE",
+    }).then(this._getRes);
   }
 }
