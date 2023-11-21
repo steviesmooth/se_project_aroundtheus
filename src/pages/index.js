@@ -65,6 +65,22 @@ const userInfo = new UserInfo({
   avatarSelector: profileImage,
 });
 
+Promise.all([api.getInitialCards(), api.getProfileApi()])
+  .then(([cards, userData]) => {
+    userInfo.setUserInfo(userData);
+    cardSection = new Section(
+      {
+        items: cards,
+        renderer: renderCard,
+      },
+      cardSettings.cardList
+    );
+    cardSection.renderItems();
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
 function createCard(data) {
   const cardElement = new Card(
     {
@@ -93,7 +109,7 @@ function createCard(data) {
               cardElement.setlikes(res.likes);
             })
             .catch((err) => {
-              console.log(`An error occured: ${err}`);
+              console.error(err);
             });
         } else {
           api
@@ -102,7 +118,7 @@ function createCard(data) {
               cardElement.setlikes(res.likes);
             })
             .catch((err) => {
-              console.log(`An error occured: ${err}`);
+              console.error(err);
             });
         }
       },
@@ -117,22 +133,6 @@ const renderCard = (data) => {
   const cardEl = createCard(data);
   cardSection.addItem(cardEl);
 };
-
-Promise.all([api.getInitialCards(), api.getProfileApi()])
-  .then(([cards, userData]) => {
-    userInfo.setUserInfo(userData);
-    cardSection = new Section(
-      {
-        items: cards,
-        renderer: renderCard,
-      },
-      cardSettings.cardList
-    );
-    cardSection.renderItems();
-  })
-  .catch((err) => {
-    console.log(err);
-  });
 
 const userInfoPopup = new PopupWithForm({
   popupSelector: profileEditModal,
