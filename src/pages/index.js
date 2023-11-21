@@ -103,7 +103,7 @@ function createCard(data) {
       },
       handleLike: () => {
         if (cardElement.isLiked()) {
-          api
+          return api
             .disLikeCard(cardElement._cardId)
             .then((res) => {
               cardElement.setlikes(res.likes);
@@ -112,7 +112,7 @@ function createCard(data) {
               console.error(err);
             });
         } else {
-          api
+          return api
             .likeCard(cardElement._cardId)
             .then((res) => {
               cardElement.setlikes(res.likes);
