@@ -89,12 +89,13 @@ function createCard(data) {
         cardImagePreview.open(imgData);
       },
       handleDelete: () => {
-        confirmPreviewPopup.openPopup(() => {
+        confirmPreviewPopup.open();
+        confirmPreviewPopup.submitBtnAction(() => {
           confirmPreviewPopup.renderLoading(true);
           api
             .deleteCard(data._id)
-            .then(() => {
-              cardElement.handleDeleteButton();
+            .then((res) => {
+              cardElement.handleDeleteButton(res);
               confirmPreviewPopup.close();
             })
             .catch((err) => console.log(`An error occured: ${err}`))
@@ -102,20 +103,20 @@ function createCard(data) {
         });
       },
       handleLike: () => {
-        if (cardElement.isLiked()) {
+        if (!cardElement.isCardLiked()) {
           return api
-            .disLikeCard(cardElement._cardId)
+            .likeCard(cardElement._cardId)
             .then((res) => {
-              cardElement.setlikes(res.likes);
+              cardElement.setlikes(res.isLiked);
             })
             .catch((err) => {
               console.error(err);
             });
         } else {
           return api
-            .likeCard(cardElement._cardId)
+            .disLikeCard(cardElement._cardId)
             .then((res) => {
-              cardElement.setlikes(res.likes);
+              cardElement.setlikes(res.isLiked);
             })
             .catch((err) => {
               console.error(err);
@@ -182,12 +183,25 @@ const profileImagePopup = new PopupWithForm({
   },
 });
 
-const confirmPreviewPopup = new PopupWithConfirmation(cardDeletePopup);
+const confirmPreviewPopup = new PopupWithConfirmation({
+  popupSelector: cardDeletePopup,
+  handleFormSubmit: (id) => {
+    api
+      .deleteCard(id)
+      .then(() => {
+        confirmPreviewPopup.close();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
+});
 
 cardImagePreview.setEventListeners();
 userInfoPopup.setEventListeners();
 newCardPopup.setEventListeners();
 confirmPreviewPopup.setEventListeners();
+
 profileImagePopup.setEventListeners();
 
 addCardBtn.addEventListener("click", () => {
