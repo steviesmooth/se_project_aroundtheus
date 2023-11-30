@@ -68,6 +68,7 @@ const userInfo = new UserInfo({
 Promise.all([api.getInitialCards(), api.getProfileApi()])
   .then(([cards, userData]) => {
     userInfo.setUserInfo(userData);
+    userInfo.setAvatar(userData);
     cardSection = new Section(
       {
         items: cards,
@@ -90,12 +91,12 @@ function createCard(data) {
       },
       handleDelete: () => {
         confirmPreviewPopup.open();
-        confirmPreviewPopup.submitBtnAction(() => {
+        confirmPreviewPopup.setSubmitAction(() => {
           confirmPreviewPopup.renderLoading(true);
           api
             .deleteCard(data._id)
             .then((res) => {
-              cardElement.handleDeleteButton(res);
+              cardElement.deleteCard(res);
               confirmPreviewPopup.close();
             })
             .catch((err) => console.log(`An error occured: ${err}`))
@@ -161,7 +162,6 @@ const newCardPopup = new PopupWithForm({
       .then((data) => {
         renderCard(data);
         newCardPopup.close();
-        addFormValidator.disableButton();
       })
       .catch((err) => console.log(`An error occured ${err}`))
       .finally(() => newCardPopup.renderLoading(false));
@@ -175,7 +175,7 @@ const profileImagePopup = new PopupWithForm({
     api
       .updateAvatar(data)
       .then((data) => {
-        userInfo.setUserInfo(data);
+        userInfo.setAvatar(data);
         profileImagePopup.close();
       })
       .catch((err) => console.error(err))
@@ -185,16 +185,6 @@ const profileImagePopup = new PopupWithForm({
 
 const confirmPreviewPopup = new PopupWithConfirmation({
   popupSelector: cardDeletePopup,
-  handleFormSubmit: (id) => {
-    api
-      .deleteCard(id)
-      .then(() => {
-        confirmPreviewPopup.close();
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  },
 });
 
 cardImagePreview.setEventListeners();
@@ -205,6 +195,7 @@ confirmPreviewPopup.setEventListeners();
 profileImagePopup.setEventListeners();
 
 addCardBtn.addEventListener("click", () => {
+  addFormValidator.disableButton();
   addFormValidator.toggleButtonState();
   newCardPopup.open();
 });

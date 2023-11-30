@@ -53,7 +53,7 @@ export default class Card {
       );
   }
 
-  handleDeleteButton() {
+  deleteCard() {
     this._element.remove();
     this._element = null;
   }
