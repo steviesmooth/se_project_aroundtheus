@@ -68,7 +68,7 @@ const userInfo = new UserInfo({
 Promise.all([api.getInitialCards(), api.getProfileApi()])
   .then(([cards, userData]) => {
     userInfo.setUserInfo(userData);
-    userInfo.setAvatar(userData);
+    userInfo.setAvatar(userData.avatar);
     cardSection = new Section(
       {
         items: cards,
@@ -175,7 +175,7 @@ const profileImagePopup = new PopupWithForm({
     api
       .updateAvatar(data)
       .then((data) => {
-        userInfo.setAvatar(data);
+        userInfo.setAvatar(data.avatar);
         profileImagePopup.close();
       })
       .catch((err) => console.error(err))
